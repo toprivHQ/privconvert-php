@@ -93,7 +93,32 @@ $azure = AzureBlobClient::withToken('myaccount', fn () => $myTokenCache->get('ht
 $pc->convertStorage('word-to-pdf', 'az://myaccount/docs/a.docx', 'az://myaccount/docs/a.pdf', ['azureClient' => $azure]);
 ```
 
-**Backblaze B2, Cloudflare R2 and other S3-compatible storage.** Use an `s3://` address and an S3 client pointed at the provider:
+**Cloudflare R2, Backblaze B2 and other S3-compatible storage.** Use an `s3://` address and an S3 client pointed at the provider.
+
+### Cloudflare R2
+
+Convert files in an R2 bucket and write the result back to R2. Create an R2 API token with read and write access to the bucket, and use your Cloudflare account ID in the endpoint:
+
+```php
+use Aws\S3\S3Client;
+use PrivConvert\PrivConvert;
+
+$r2 = new S3Client([
+    'region' => 'auto',
+    'endpoint' => 'https://' . getenv('R2_ACCOUNT_ID') . '.r2.cloudflarestorage.com',
+    'credentials' => ['key' => getenv('R2_ACCESS_KEY_ID'), 'secret' => getenv('R2_SECRET_ACCESS_KEY')],
+]);
+
+$pc = new PrivConvert();
+$pc->convertStorage('word-to-pdf', 's3://my-bucket/contracts/input.docx', 's3://my-bucket/contracts/output.pdf', [
+    's3Client' => $r2,
+    'overwrite' => false,
+]);
+```
+
+The file goes from R2 to PrivConvert and back from wherever this code runs. Your R2 keys stay with you.
+
+### Backblaze B2
 
 ```php
 $b2 = new S3Client([
@@ -104,7 +129,7 @@ $b2 = new S3Client([
 $pc->convertStorage('word-to-pdf', 's3://my-bucket/input.docx', 's3://my-bucket/output.pdf', ['s3Client' => $b2]);
 ```
 
-**Options.**
+### Options
 
 ```php
 $pc->convertStorage('word-to-pdf', 'gs://in-bucket/contract.docx', 's3://out-bucket/contract.pdf', [

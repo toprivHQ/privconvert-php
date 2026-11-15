@@ -3,7 +3,7 @@
     "description": "Official PHP client for the PrivConvert file conversion API. Zero data retention.",
     "type": "library",
     "license": "MIT",
-    "keywords": ["file conversion", "pdf", "convert", "api", "privacy", "zero data retention", "s3", "azure", "google cloud storage"],
+    "keywords": ["file conversion", "pdf", "convert", "api", "privacy", "zero data retention", "s3", "azure", "google cloud storage", "cloudflare r2", "backblaze b2"],
     "homepage": "https://privconvert.com/developers/",
     "authors": [
         {"name": "PrivConvert", "email": "contact@topriv.com", "homepage": "https://privconvert.com"}
