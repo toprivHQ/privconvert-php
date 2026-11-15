@@ -1,0 +1,38 @@
+{
+    "name": "privconvert/privconvert",
+    "description": "Official PHP client for the PrivConvert file conversion API. Zero data retention.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["file conversion", "pdf", "convert", "api", "privacy", "zero data retention", "s3", "azure", "google cloud storage"],
+    "homepage": "https://privconvert.com/developers/",
+    "authors": [
+        {"name": "PrivConvert", "email": "contact@topriv.com", "homepage": "https://privconvert.com"}
+    ],
+    "support": {
+        "email": "contact@topriv.com",
+        "docs": "https://privconvert.com/docs/",
+        "issues": "https://github.com/toprivHQ/privconvert-php/issues",
+        "source": "https://github.com/toprivHQ/privconvert-php"
+    },
+    "require": {
+        "php": ">=8.1",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "suggest": {
+        "aws/aws-sdk-php": "To convert files in Amazon S3 or S3-compatible storage (Backblaze B2, Cloudflare R2)",
+        "google/cloud-storage": "To convert files in Google Cloud Storage"
+    },
+    "autoload": {
+        "psr-4": {"PrivConvert\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"PrivConvert\\Tests\\": "tests/"}
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
